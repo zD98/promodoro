@@ -1,45 +1,66 @@
 <template>
   <div class="index">
     <div class="timer-group">
-      <Timer></Timer>
-      <Timer></Timer>
-      <Timer></Timer>
+      <Timer v-model="hour" :start="start"></Timer>
+      <Timer v-model="minute" :start="start"></Timer>
+      <Timer v-model="second" :start="start"></Timer>
     </div>
     <div class="btn-wrap">
-      <Button @handleClick="handleClick">{{btnText}}</Button>
+      <Btn @handleClick="handleClick">{{btnText}}</Btn>
     </div>
   </div>
 </template>
 
 <script>
-import Button from './Button.vue'
+import Btn from './Button.vue'
 import Timer from './Timer.vue'
-
 
 
 export default {
   name: 'index',
-  component: {
-    Button,
+  components: {
+    Btn,
     Timer
   },
   data () {
     return {
+      start: false,
       btnText:'开始',
       hour: 0,
       minute: 0,
-      second: 0
+      second: 0,
+      timeHandle: false
     }
   },
   methods: {
     handleClick(){
-
+      this.start = true
+      this.startCountDown()
     },
     startCountDown(){
-
+      this.timeHandle = setInterval(()=>{
+        this.second--
+        this.checkTime()
+      }, 1000)
     },
     stopCountDown(){
-
+      clearInterval(this.timeHandle)
+      this.timeHandle = null
+      this.hour = this.minute = this.second = 0
+    },
+    checkTime(){
+      if(this.second < 0&&this.minute==0 && this.hour ==0){
+        this.stopCountDown()
+        return 
+      }
+      if(this.second < 0){
+        this.second = 59
+        this.minute --
+      }
+      if(this.minute < 0){
+        this.minute = 59
+        this.hour --
+      }
     },
     cancel(){
 

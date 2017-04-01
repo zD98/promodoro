@@ -22,8 +22,15 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="less">
 .btn {
-	
+	width: 100%;
+	height: 36px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: #39f;
+	color: #fff;
 }
 </style>

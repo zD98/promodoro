@@ -2,7 +2,9 @@
   <div class="index">
     <div class="timer-group">
       <Timer v-model="hour" :start="start"></Timer>
-      <Timer v-model="minute" :start="start"></Timer>
+      <span>:</span>
+      <Timer ref="minute" v-model="minute" :start="start"></Timer>
+      <span>:</span>
       <Timer v-model="second" :start="start"></Timer>
     </div>
     <div class="btn-wrap">
@@ -68,10 +70,26 @@ export default {
     clear(){
       
     }
+  },
+  mounted(){
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less">
+.timer-group{
+  margin: 0 auto;
+  width: 480px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 5em;
+}
+.btn-wrap {
+  width: 300px;
+  margin: 0 auto;
+}
 </style>

@@ -2,7 +2,7 @@
 <div class="number">
 	<div v-if="start" class="number-stage">{{time}}</div>	
 	<div v-else class="number-input">
-			<input ref="input" type="number" min="0" max="60" @change="handleChange($event.target.value)"/>
+			<input ref="input" type="number" min="00" max="60" v-model="time" @change="handleChange($event.target.value)"/>
 	</div>
 </div>
 </template>
@@ -45,5 +45,25 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="less">
+.number {
+	width: 10em;
+	.number-state {
+
+	}
+	.number-input {
+		input {
+			width: 100%;
+			height: 100%;
+			text-align: right;
+			font-size: 1em;
+			margin: 0;
+			padding: 0;
+			border: 1px solid #dedede;
+			&:focus {
+				outline: none;
+			}
+		}	
+	}
+}
 </style>

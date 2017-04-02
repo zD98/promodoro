@@ -57,6 +57,7 @@ export default {
 			height: 100%;
 			text-align: right;
 			font-size: 1em;
+			font-weight: 400;
 			margin: 0;
 			padding: 0;
 			border: 1px solid #dedede;

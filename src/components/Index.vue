@@ -36,19 +36,35 @@ export default {
   },
   methods: {
     handleClick(){
-      this.start = true
-      this.startCountDown()
+      this.start = !this.start
+      if(this.start) {
+        this.startCountDown()
+      }else {
+        this.interruptCountDown()
+      }
     },
     startCountDown(){
+      this.btnText = "暂停"
+      this.coundDown()
       this.timeHandle = setInterval(()=>{
-        this.second--
-        this.checkTime()
+        this.coundDown()
       }, 1000)
     },
+    interruptCountDown(){
+      this.btnText = "继续"
+      clearInterval(this.timeHandle)
+      this.timeHandle = null
+    },
     stopCountDown(){
+      this.btnText = "开始"
+      this.start = false
       clearInterval(this.timeHandle)
       this.timeHandle = null
       this.hour = this.minute = this.second = 0
+    },
+    coundDown(){
+        this.second--
+        this.checkTime()
     },
     checkTime(){
       if(this.second < 0&&this.minute==0 && this.hour ==0){
@@ -80,13 +96,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 .timer-group{
-  margin: 0 auto;
   width: 480px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 5em;
+  margin: 36px auto;
 }
 .btn-wrap {
   width: 300px;
